@@ -2,6 +2,7 @@
 #
 .DS_Store
 
+*.keystore
 !debug.keystore
 
 # Xcode
@@ -45,7 +46,6 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
 
 # fastlane
 #
