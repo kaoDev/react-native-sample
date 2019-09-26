@@ -2,6 +2,8 @@
 #
 .DS_Store
 
+!debug.keystore
+
 # Xcode
 #
 build/
