@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {Fragment} from 'react';
+import React, {Fragment, useRef} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,6 +16,7 @@ import {
   View,
   Text,
   StatusBar,
+  Button,
 } from 'react-native';
 
 import {
@@ -25,8 +26,10 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {BottomSheet} from './BottomSheet';
 
 const App = () => {
+  const bottomSheet = useRef<{open: () => void; close: () => void}>(null);
   return (
     <Fragment>
       <StatusBar barStyle="dark-content" />
@@ -44,8 +47,8 @@ const App = () => {
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-                screen and then come back to see your edits.
+                Edit <Text style={styles.highlight}>App.tsx</Text> to change
+                this screen and then come back to see your edits.
               </Text>
             </View>
             <View style={styles.sectionContainer}>
@@ -67,6 +70,26 @@ const App = () => {
               </Text>
             </View>
             <LearnMoreLinks />
+
+            <Button
+              title="OPEN BOTTOM SHEET"
+              onPress={() => {
+                bottomSheet.current && bottomSheet.current.open();
+              }}
+            />
+            <BottomSheet
+              closeOnDragDown
+              ref={bottomSheet}
+              height={300}
+              duration={250}
+              customStyles={{
+                container: {
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                },
+              }}>
+              <View style={{width: 60, height: 60, backgroundColor: 'red'}} />
+            </BottomSheet>
           </View>
         </ScrollView>
       </SafeAreaView>
